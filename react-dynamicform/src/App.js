@@ -11,6 +11,14 @@ class App extends Component {
     ]
   }
 
+  onSubmit = (model) => {
+    model.id = +new Date();
+    alert(JSON.stringify(model));
+    this.setState({
+      data: [model, ...this.state.data]
+    });
+  }
+  
   render() {
     return (
       <div className="App">
