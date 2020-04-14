@@ -14,8 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <DynamicForm 
-          className="form"
+        <DynamicForm className="form"
           title="Consent"
           model={[
             {key: "name", label: "Title"},
