@@ -5,9 +5,9 @@ import './App.css';
 class App extends Component {
   state = {
     data: [
-      {id: 0, title:"a", info:"info about a", consent:"Yes/No?"},
-      {id: 1, title:"b", info:"info about b", consent:"Yes/No?"},
-      {id: 2, title:"c", info:"info about c", consent:"Yes/No?"}
+      {id: 0, name:"a", info:"info about a", consent:"Yes/No?"},
+      {id: 1, name:"b", info:"info about b", consent:"Yes/No?"},
+      {id: 2, name:"c", info:"info about c", consent:"Yes/No?"}
     ]
   }
 
@@ -18,7 +18,7 @@ class App extends Component {
           className="form"
           title="Consent"
           model={[
-            {key: "title", label: "Title"},
+            {key: "name", label: "Title"},
             {key: "info", label: "Info"},
             {key: "consent", label: "Yes/No?", props: {required: true}}
           ]}
