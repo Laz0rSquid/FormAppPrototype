@@ -1,0 +1,83 @@
+{
+    "key": {
+        "version": "5.1",
+        "name": "TestStudie Einwilligung",
+        "domainName": "TestStudie"
+    },
+    "footer": "<div>Das ist die Fußzeile!</div>",
+    "header": "<div>Das ist die Kopfzeile!</div>",
+    "updateDate": "2020-04-08T15:11:39.159+02:00",
+    "assignedModules": [
+        {
+            "defaultConsentStatus": "ACCEPTED",
+            "displayCheckboxes": [
+                "ACCEPTED",
+                "DECLINED"
+            ],
+            "mandatory": true,
+            "module": {
+                "title": "<div>Dürfen wir Ihre Stammdaten speichern?</div>",
+                "text": "<div>Im Sinne der Datenverarbeitung möchten wir ihre Stammdaten speichern um Sie z.B. darüber Informieren wenn wir Auffälligkeiten während der Untersuchungen finden.</div>",
+                "key": {
+                    "domainName": "TestStudie",
+                    "name": "Stammdaten speichern",
+                    "version": "1.0"
+                }
+            },
+            "ordernumber": 0
+        },
+        {
+            "defaultConsentStatus": "ACCEPTED",
+            "displayCheckboxes": [
+                "ACCEPTED",
+                "DECLINED"
+            ],
+            "mandatory": true,
+            "module": {
+                "title": "<div>Daten aus dem klinischen Umfeld.</div>",
+                "text": "<div>Dürfen wir ihre Daten aus dem klinischen System in das forschende System überführenm?</div>",
+                "key": {
+                    "domainName": "TestStudie",
+                    "name": "Klinische Daten",
+                    "version": "1.0"
+                }
+            },
+            "ordernumber": 1
+        },
+        {
+            "defaultConsentStatus": "ACCEPTED",
+            "displayCheckboxes": [
+                "ACCEPTED",
+                "DECLINED"
+            ],
+            "mandatory": true,
+            "module": {
+                "title": "<div>Dürfen wir Bioproben nehmen?</div>",
+                "text": "<div>Dürfen wir Bioproben von Ihnen entnehmen z.B. Blut und mit diesen Proben International forschen?</div>",
+                "key": {
+                    "domainName": "TestStudie",
+                    "name": "Bioproben nehmen",
+                    "version": "1.0"
+                }
+            },
+            "ordernumber": 2
+        }
+    ],
+    "freeTextDefs": [
+        {
+            "comment": "Das ist ein Kommentar oder eine Erklärung",
+            "name": "Wie alt sind Sie?",
+            "pos": 0,
+            "required": true,
+            "type": "INTEGER"
+        }
+    ],
+    "_embedded": {
+        "idTicket": "bf148071-36be-4655-8639-a78f119fbc8f"
+    },
+    "_links": {
+        "self": {
+            "href": "https://s-ttp-play.charite.de/api/v1.0/consent/template?format=mosaic&psn=BLV-3260519"
+        }
+    }
+}

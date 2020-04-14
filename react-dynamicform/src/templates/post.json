@@ -1,0 +1,51 @@
+{
+    "key": {
+        "consentTemplateKey": {
+            "name": "TestStudie Einwilligung",
+            "version": "5.1"
+        }
+    },
+    "moduleStates": {
+        "entry": [
+            {
+                "key": {
+                    "name": "Stammdaten speichern",
+                    "version": "1.0"
+                },
+                "value": {
+                    "consentState": "ACCEPTED"
+                }
+            },
+            {
+                "key": {
+                    "name": "Bioproben nehmen",
+                    "version": "1.0"
+                },
+                "value": {
+                    "consentState": "ACCEPTED"
+                }
+            },
+            {
+                "key": {
+                    "name": "Klinische Daten",
+                    "version": "1.0"
+                },
+                "value": {
+                    "consentState": "ACCEPTED"
+                }
+            }
+        ]
+    },
+    "physicianId": "username",
+    "templateType": "CONSENT",
+    "freeTextVals": {
+        "entry": [
+            {
+                "key": "Wie alt sind Sie?",
+                "value": "29"
+            }
+        ]
+    },
+    "patientSignatureBase64": "base64string ...",
+    "physicianSignatureBase64": "base64string ..."
+}
