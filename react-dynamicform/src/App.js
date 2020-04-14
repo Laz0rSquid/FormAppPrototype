@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import DynamicForm from './components/DynamicForm';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    data: [
+      {id: 0, title:"a", info:"info about a", consent:"Yes/No?"},
+      {id: 1, title:"b", info:"info about b", consent:"Yes/No?"},
+      {id: 2, title:"c", info:"info about c", consent:"Yes/No?"}
+    ]
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <DynamicForm 
+          className="form"
+          title="Consent"
+          model={[
+            {key: "title", label: "Title"},
+            {key: "info", label: "Info"},
+            {key: "consent", label: "Yes/No?", props: {required: true}}
+          ]}
+          onSubmit={(model) => {this.onSubmit(model)}}
+        />
+
+        <pre style={{width:"300px"}}>
+          {JSON.stringify(this.state.data)}
+        </pre>
+
+      </div>
+    );
+  }
 }
 
 export default App;
