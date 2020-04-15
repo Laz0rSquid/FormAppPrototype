@@ -5,9 +5,20 @@ import './App.css';
 class App extends Component {
   state = {
     data: [
-      {id: 0, name:"a", info:"info about a", consent:"Yes/No?"},
-      {id: 1, name:"b", info:"info about b", consent:"Yes/No?"},
-      {id: 2, name:"c", info:"info about c", consent:"Yes/No?"}
+      {id: "masterData", title:"Stammdaten", text:"Dürfen wir Ihre Stammdaten erfassen?", default: false},
+      {id: "clinicalData", title:"Klinische Daten", text:"Dürfen wir Ihre klinischen Daten erfassen?", default: false},
+      {id: "bioSamples", title:"Bioproben", text:"Dürfen wir Bioproben entnehmen?", default: false}
+    ],
+    patients: [
+      {
+        id: "123",
+        pseudonym: "Jane Doe",
+        consents: [
+          {id: "masterData", status: true},
+          {id: "clinicalData", status: true},
+          {id: "bioSamples", status: true}
+        ]
+      }
     ]
   }
 
