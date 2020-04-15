@@ -1,0 +1,12 @@
+{
+    "success": "Das Formular wurde erfolgreich gespeichert",
+    "idTicket": "26870568-6f0a-4c19-9681-ab9db8fefcd2",
+    "_embedded": {
+        "idTicket": "26870568-6f0a-4c19-9681-ab9db8fefcd2"
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:9090/api/v1.0/consent?format=mosaic&psn=BLV-3260519"
+        }
+    }
+}
