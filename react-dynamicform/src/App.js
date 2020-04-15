@@ -5,9 +5,24 @@ import './App.css';
 class App extends Component {
   state = {
     data: [
-      {id: "masterData", title:"Stammdaten", text:"Dürfen wir Ihre Stammdaten erfassen?", default: false},
-      {id: "clinicalData", title:"Klinische Daten", text:"Dürfen wir Ihre klinischen Daten erfassen?", default: false},
-      {id: "bioSamples", title:"Bioproben", text:"Dürfen wir Bioproben entnehmen?", default: false}
+      {
+        key: "masterData",
+        title:"Stammdaten",
+        text:"Dürfen wir Ihre Stammdaten erfassen?",
+        default: false
+      },
+      {
+        key: "clinicalData",
+        title:"Klinische Daten",
+        text:"Dürfen wir Ihre klinischen Daten erfassen?",
+        default: false
+      },
+      {
+        key: "bioSamples",
+        title:"Bioproben",
+        text:"Dürfen wir Bioproben entnehmen?",
+        default: false
+      }
     ],
     patients: [
       {
@@ -20,6 +35,11 @@ class App extends Component {
         ]
       }
     ]
+  }
+
+  // Needs to be renamed later down the line (not getting models anymore)
+  getModel = () => {
+    let model = this.state.data;
   }
 
   onSubmit = (model) => {
@@ -36,9 +56,15 @@ class App extends Component {
         <DynamicForm className="form"
           title="Consent"
           model={[
-            {key: "name", label: "Title"},
-            {key: "info", label: "Info"},
-            {key: "consent", label: "Yes/No?", type:"text", props: {required: true}}
+            {
+              key: "consent",
+              label: "Yes/No?",
+              text: "info text for testing",
+              props: {
+                default: false,
+                required: true
+               }
+            }
           ]}
           onSubmit={(model) => {this.onSubmit(model)}}
         />
