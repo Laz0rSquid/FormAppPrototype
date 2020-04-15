@@ -1,0 +1,9 @@
+{
+    "error": "Sie sind nicht berechtigt",
+    "idTicket": "31fc42c1-ea19-430b-818d-56533076b3be",
+    "_links": {
+        "self": {
+            "href": "https://s-ttp-play.charite.de/api/v1.0/person/pseudonym?format=mosaic&psn=BLV-1704082"
+        }
+    }
+}
