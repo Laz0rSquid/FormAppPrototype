@@ -27,7 +27,7 @@ class App extends Component {
           model={[
             {key: "name", label: "Title"},
             {key: "info", label: "Info"},
-            {key: "consent", label: "Yes/No?", props: {required: true}}
+            {key: "consent", label: "Yes/No?", type:"text", props: {required: true}}
           ]}
           onSubmit={(model) => {this.onSubmit(model)}}
         />

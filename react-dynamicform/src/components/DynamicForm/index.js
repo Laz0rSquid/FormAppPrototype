@@ -3,14 +3,8 @@ import React, { Component } from 'react';
 import './form.css';
 
 export default class DynamicForm extends Component {
-  state = {
+  state = {}
 
-  }
-/*
-  constructor(props) {
-    super(props);
-  }
-*/
   onChange = (e, key) => {
     this.setState({
       [key]: this[key].value
@@ -20,6 +14,23 @@ export default class DynamicForm extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     if (this.props.onSubmit) this.props.onSubmit(this.state);
+  }
+
+  /*
+  helperCheckInputType = (type) => {
+    return type;
+  }
+  */
+
+  renderInput = (m, key, type) => {
+    return (
+      <input {...m.props}
+        ref={(key) => { this[m.key] = key }}
+        className="form-input"
+        type={type}
+        key={"input" + key}
+        onChange={(e) => { this.onChange(e, key) }} />
+    );
   }
 
   renderForm = () => {
@@ -35,12 +46,7 @@ export default class DynamicForm extends Component {
           <label className="form-label" key={"label" + m.key} htmlFor={m.key}>
             {m.label}
           </label>
-          <input {...props} 
-            ref={(key)=>{this[m.key]=key}}
-            className="form-input"
-            type={type}
-            key={"input" + m.key}
-            onChange={(e) => {this.onChange(e, key)}} />
+          {type && this.renderInput(m, key, type)}
         </div>
       );
     });
@@ -53,7 +59,7 @@ export default class DynamicForm extends Component {
     return (
       <div className={this.props.className}>
         <h3>{title}</h3>
-        <form className="dynamic-form" onSubmit={(e) => {this.onSubmit(e)}} >
+        <form className="dynamic-form" onSubmit={(e) => { this.onSubmit(e) }} >
           {this.renderForm()}
           <div className="form-group">
             <button type="submit">submit</button>
