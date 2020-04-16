@@ -7,8 +7,9 @@ export default class DynamicForm extends Component {
 
   onChange = (e, key) => {
     this.setState({
-      [key]: this[key].value
+      [key]: this[key].checked
     });
+    alert(JSON.stringify(this[key].checked))
   }
 
   onSubmit = (e) => {
@@ -16,18 +17,21 @@ export default class DynamicForm extends Component {
     if (this.props.onSubmit) this.props.onSubmit(this.state);
   }
 
-  /*
-  helperCheckInputType = (type) => {
-    return type;
-  }
-  */
-
-  renderInput = (m, key, type) => {
+  /** input with a radio button would look like this:
+    <div>
+      <input type="radio" id="yes" name="consent" value="ACCEPTED" />
+      <label for="yes">Ja</label><br />
+      <input type="radio" id="no" name="consent" value="DECLINED" defaultChecked />
+      <label for="yes">Nein</label><br/>
+    </div>
+   */
+  renderInput = (m, key) => {
     return (
       <input {...m.props}
         ref={(key) => { this[m.key] = key }}
+        name="consent"
         className="form-input"
-        type={type}
+        type="checkbox"
         key={"input" + key}
         onChange={(e) => { this.onChange(e, key) }} />
     );
@@ -46,7 +50,10 @@ export default class DynamicForm extends Component {
           <label className="form-label" key={"label" + m.key} htmlFor={m.key}>
             {m.label}
           </label>
-          {type && this.renderInput(m, key, type)}
+          <text>
+            {m.text}
+          </text>
+          {this.renderInput(m, key)}
         </div>
       );
     });
