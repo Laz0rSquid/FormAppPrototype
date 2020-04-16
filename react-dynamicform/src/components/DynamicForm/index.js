@@ -1,29 +1,36 @@
 import React, { Component } from 'react';
-//import ReactDOM from 'react-dom';
 import './form.css';
 
 export default class DynamicForm extends Component {
-  state = {}
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  /*
+  stateArrayHelper = () => {
+    let consents = {};
+    Object.keys(this.state).map((i) => (consents = {...consents, this.state[i]}));
+    alert(JSON.stringify(consents));
+  }
+  */
+
+  consentStatusHelper = (key) => {
+    return { "id": key, "status": this[key].checked ? "ACCEPTED" : "DECLINED" };
+  }
 
   onChange = (e, key) => {
     this.setState({
       [key]: this[key].checked
     });
-  }
+}
 
   onSubmit = (e) => {
     e.preventDefault();
+    //Object.keys(this.state).map(i => alert(JSON.stringify(this.state[i])));
     if (this.props.onSubmit) this.props.onSubmit(this.state);
   }
 
-  /** input with a radio button would look like this:
-    <div>
-      <input type="radio" id="yes" name="consent" value="ACCEPTED" />
-      <label for="yes">Ja</label><br />
-      <input type="radio" id="no" name="consent" value="DECLINED" defaultChecked />
-      <label for="yes">Nein</label><br/>
-    </div>
-   */
   renderInput = (m, key) => {
     return (
       <input {...m.props}
