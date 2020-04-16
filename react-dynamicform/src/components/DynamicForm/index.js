@@ -9,7 +9,6 @@ export default class DynamicForm extends Component {
     this.setState({
       [key]: this[key].checked
     });
-    alert(JSON.stringify(this[key].checked))
   }
 
   onSubmit = (e) => {
