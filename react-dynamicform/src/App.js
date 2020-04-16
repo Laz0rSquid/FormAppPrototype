@@ -48,12 +48,22 @@ class App extends Component {
     let model = this.state.data;
   }
 
-  onSubmit = (model) => {
-    model.id = +new Date();
-    alert(JSON.stringify(model));
+  savePatientConsentHelper = (model) => {
+    let newPatient = {};
+    newPatient.id = +new Date();
+    newPatient.pseudonym = "Jim Doe";
+    newPatient.consents = [model];
     this.setState({
-      data: [model, ...this.state.data]
+      patients: [newPatient, ...this.state.patients]
     });
+  }
+
+  onSubmit = (model) => {
+    this.savePatientConsentHelper(model);
+    /*model.id = +new Date();
+    this.setState({
+      patients: [model, ...this.state.patients]
+    });*/
   }
   
   render() {
@@ -75,7 +85,7 @@ class App extends Component {
         />
 
         <pre style={{width:"300px"}}>
-          {JSON.stringify(this.state.data)}
+          {JSON.stringify(this.state.patients)}
         </pre>
 
       </div>
