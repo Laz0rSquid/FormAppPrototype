@@ -48,7 +48,7 @@ export default class DynamicForm extends Component {
       return (
         <div key={key} className="form-group">
           <label className="form-label" key={"label" + m.key} htmlFor={m.key}>
-            {m.label}
+            {m.title}
           </label>
           <text>
             {m.text}

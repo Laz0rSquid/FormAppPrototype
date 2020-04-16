@@ -9,19 +9,25 @@ class App extends Component {
         key: "masterData",
         title:"Stammdaten",
         text:"Dürfen wir Ihre Stammdaten erfassen?",
-        default: false
+        props: [
+          {default: false}
+        ]
       },
       {
         key: "clinicalData",
         title:"Klinische Daten",
         text:"Dürfen wir Ihre klinischen Daten erfassen?",
-        default: false
+        props: [
+          {default: false}
+        ]
       },
       {
         key: "bioSamples",
         title:"Bioproben",
         text:"Dürfen wir Bioproben entnehmen?",
-        default: false
+        props: [
+          {default: false}
+        ]
       }
     ],
     patients: [
@@ -29,9 +35,9 @@ class App extends Component {
         id: "123",
         pseudonym: "Jane Doe",
         consents: [
-          {id: "masterData", status: true},
-          {id: "clinicalData", status: true},
-          {id: "bioSamples", status: true}
+          {id: "masterData", status: "ACCEPTED"},
+          {id: "clinicalData", status: "ACCEPTED"},
+          {id: "bioSamples", status: "ACCEPTED"}
         ]
       }
     ]
@@ -58,12 +64,11 @@ class App extends Component {
           model={[
             {
               key: "consent",
-              label: "Yes/No?",
-              text: "info text for testing",
+              title: "Personal Data",
+              text: "I give my consent for my personal data to be used in this study",
               props: {
-                default: false,
-                required: true
-               }
+                default: false
+              }
             }
           ]}
           onSubmit={(model) => {this.onSubmit(model)}}
