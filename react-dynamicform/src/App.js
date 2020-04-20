@@ -73,7 +73,7 @@ class App extends Component {
           title="Consent"
           model={[
             {
-              key: "consent",
+              key: "persoanlData",
               title: "Personal Data",
               text: "I give my consent for my personal data to be used in this study",
               props: {
