@@ -4,31 +4,24 @@ import './form.css';
 export default class DynamicForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      consents: []
+    };
   }
 
-  /*
-  stateArrayHelper = () => {
-    let consents = {};
-    Object.keys(this.state).map((i) => (consents = {...consents, this.state[i]}));
-    alert(JSON.stringify(consents));
-  }
-  */
-
-  consentStatusHelper = (key) => {
-    return { "id": key, "status": this[key].checked ? "ACCEPTED" : "DECLINED" };
+  getConsentStatusByKey = (key) => {
+    return { "status": this[key].checked ? "ACCEPTED" : "DECLINED" };
   }
 
   onChange = (e, key) => {
     this.setState({
-      [key]: this[key].checked
+      consents : {[key] : this.getConsentStatusByKey(key)}
     });
-}
+  }
 
   onSubmit = (e) => {
     e.preventDefault();
-    //Object.keys(this.state).map(i => alert(JSON.stringify(this.state[i])));
-    if (this.props.onSubmit) this.props.onSubmit(this.state);
+    if (this.props.onSubmit) this.props.onSubmit(this.state.consents);
   }
 
   renderInput = (m, key) => {
