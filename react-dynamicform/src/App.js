@@ -43,44 +43,30 @@ class App extends Component {
     ]
   }
 
-  // Needs to be renamed later down the line (not getting models anymore)
-  getModel = () => {
-    let model = this.state.data;
-  }
-
-  savePatientConsentHelper = (model) => {
+  onSubmit = (model) => {
     let newPatient = {};
     newPatient.id = +new Date();
     newPatient.pseudonym = "Jim Doe";
-    newPatient.consents = [model];
+    newPatient.consents = model;
     this.setState({
       patients: [newPatient, ...this.state.patients]
     });
   }
-
-  onSubmit = (model) => {
-    this.savePatientConsentHelper(model);
-    /*model.id = +new Date();
-    this.setState({
-      patients: [model, ...this.state.patients]
-    });*/
-  }
   
+  /**
+   * TODO:
+   * - DONE: Model needs to be taken from this.state.data (in preparation for loading it from files)
+   * - Model currently changes its identity in DynamicForm, maybe I can store the data from
+   *   the form in model.props to avoid confusion and data errors in the future
+   * - Test if form still works with expanded model, else form needs to be reworked to 
+   *   accomodate the changes
+   */
   render() {
     return (
       <div className="App">
         <DynamicForm className="form"
           title="Consent"
-          model={[
-            {
-              key: "persoanlData",
-              title: "Personal Data",
-              text: "I give my consent for my personal data to be used in this study",
-              props: {
-                default: false
-              }
-            }
-          ]}
+          model={this.state.data}
           onSubmit={(model) => {this.onSubmit(model)}}
         />
 

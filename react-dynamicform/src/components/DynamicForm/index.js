@@ -5,23 +5,58 @@ export default class DynamicForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      consents: []
+      consents: {}
     };
   }
 
   getConsentStatusByKey = (key) => {
-    return { "status": this[key].checked ? "ACCEPTED" : "DECLINED" };
+    return this[key].checked ? "ACCEPTED" : "DECLINED";
+  }
+
+  getConsentObject = (key) => {
+    return { id: key, status: this.getConsentStatusByKey(key) };
+  }
+
+  addOrReplaceConsent = (consents, key) => {
+    return consents[key] = this.getConsentObject(key);
   }
 
   onChange = (e, key) => {
-    this.setState({
-      consents : {[key] : this.getConsentStatusByKey(key)}
+    this.setState((state) => {
+      let newConsents = state.consents || {};
+      this.addOrReplaceConsent(newConsents, key);
+      return {consents: {...newConsents}};
     });
   }
 
+  // checkValueOnSubmitHelper = (item) => {
+  //   let exists = true;
+  //   exists = Object.keys(this.state.consents).map((key) => {
+  //     return key === item.id ? !exists : exists;
+  //   });
+  // }
+
+  /**
+   * TODO:
+   * The submit function now sends the consent data in the desired way as long as every box has been
+   * checked at least once.is works as long as every available option has been checked once. This is
+   * still not the desired functionality, there needs to be a way to store the default value for
+   * consent on first render, so that these are used on submission.
+   * Solutions to explore:
+   * - Change input elements to store their default prop as an initial value
+   * - Initialize state.consents with the default data on first render (probably need to look at 
+   *   constructor)
+   */
   onSubmit = (e) => {
     e.preventDefault();
-    if (this.props.onSubmit) this.props.onSubmit(this.state.consents);
+    let consentsArray = [];
+    Object.keys(this.state.consents).forEach((key) => {
+      consentsArray.push(this.state.consents[key]);
+    });
+    // this.props.model.forEach((item) => {
+    //   if (this.checkValueOnSubmitHelper(item)) consentsArray.push(this.props.model[item])
+    // });
+    if (this.props.onSubmit) this.props.onSubmit(consentsArray);
   }
 
   renderInput = (m, key) => {
@@ -41,7 +76,6 @@ export default class DynamicForm extends Component {
 
     let formUI = model.map((m) => {
       let key = m.key;
-      let type = m.type;
       let props = m.props || {};
 
       return (
