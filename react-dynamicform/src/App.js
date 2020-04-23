@@ -9,25 +9,25 @@ class App extends Component {
         key: "masterData",
         title:"Stammdaten",
         text:"Dürfen wir Ihre Stammdaten erfassen?",
-        props: [
-          {default: false}
-        ]
+        props: {
+          default: false
+        }
       },
       {
         key: "clinicalData",
         title:"Klinische Daten",
         text:"Dürfen wir Ihre klinischen Daten erfassen?",
-        props: [
-          {default: false}
-        ]
+        props: {
+          default: false
+        }
       },
       {
         key: "bioSamples",
         title:"Bioproben",
         text:"Dürfen wir Bioproben entnehmen?",
-        props: [
-          {default: false}
-        ]
+        props: {
+          default: false
+        }
       }
     ],
     patients: [
@@ -58,7 +58,7 @@ class App extends Component {
    * - DONE: Model needs to be taken from this.state.data (in preparation for loading it from files)
    * - Model currently changes its identity in DynamicForm, maybe I can store the data from
    *   the form in model.props to avoid confusion and data errors in the future
-   * - Test if form still works with expanded model, else form needs to be reworked to 
+   * - DONE: Test if form still works with expanded model, else form needs to be reworked to 
    *   accomodate the changes
    */
   render() {
