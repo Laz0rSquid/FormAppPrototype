@@ -9,53 +9,35 @@ export default class DynamicForm extends Component {
     };
   }
 
-  getConsentStatusByKey = (key) => {
-    return this[key].checked ? "ACCEPTED" : "DECLINED";
+  componentDidMount = () => {
+    this.setState((state) => {
+      let model = this.props.model || {};
+      let defaultConsents = {};
+      Object.keys(model).map((i) => {
+        return this.addOrReplaceConsent(defaultConsents, model[i].key, model[i].default);
+      });
+      return state.consents = defaultConsents;
+    });
   }
 
-  getConsentObject = (key) => {
-    return { id: key, status: this.getConsentStatusByKey(key) };
-  }
-
-  addOrReplaceConsent = (consents, key) => {
-    return consents[key] = this.getConsentObject(key);
+  addOrReplaceConsent = (consents, key, value) => {
+    return consents[key] = { id: key, status: value ? "ACCEPTED" : "DECLINED" };
   }
 
   onChange = (e, key) => {
     this.setState((state) => {
       let newConsents = state.consents || {};
-      this.addOrReplaceConsent(newConsents, key);
+      this.addOrReplaceConsent(newConsents, key, this[key].checked);
       return {consents: {...newConsents}};
     });
   }
 
-  // checkValueOnSubmitHelper = (item) => {
-  //   let exists = true;
-  //   exists = Object.keys(this.state.consents).map((key) => {
-  //     return key === item.id ? !exists : exists;
-  //   });
-  // }
-
-  /**
-   * TODO:
-   * The submit function now sends the consent data in the desired way as long as every box has been
-   * checked at least once.is works as long as every available option has been checked once. This is
-   * still not the desired functionality, there needs to be a way to store the default value for
-   * consent on first render, so that these are used on submission.
-   * Solutions to explore:
-   * - Change input elements to store their default prop as an initial value
-   * - Initialize state.consents with the default data on first render (probably need to look at 
-   *   constructor)
-   */
   onSubmit = (e) => {
     e.preventDefault();
     let consentsArray = [];
     Object.keys(this.state.consents).forEach((key) => {
       consentsArray.push(this.state.consents[key]);
     });
-    // this.props.model.forEach((item) => {
-    //   if (this.checkValueOnSubmitHelper(item)) consentsArray.push(this.props.model[item])
-    // });
     if (this.props.onSubmit) this.props.onSubmit(consentsArray);
   }
 
