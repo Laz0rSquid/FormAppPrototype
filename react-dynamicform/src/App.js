@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ConsentForm from './components/ConsentForm';
 import Home from './components/Home';
+import Login from './components/Login';
 import './App.css';
 
 class App extends Component {
@@ -54,10 +55,23 @@ class App extends Component {
     });
   }
 
+  /**
+   * Currently all screens are rendered below each other for testing purposes.
+   * Next step is a navigation stack that allows individual rendering
+   */
   render() {
     return (
       <div className="App">
         <Home className="form"
+          
+        />
+
+        <Login className="form"
+          
+        />
+
+        <ConsentForm className="form"
+          title="Consent"
           model={this.state.data}
           onSubmit={(model) => { this.onSubmit(model) }}
         />
@@ -69,23 +83,6 @@ class App extends Component {
       </div>
     );
   }
-
-  // render() {
-  //   return (
-  //     <div className="App">
-  //       <ConsentForm className="form"
-  //         title="Consent"
-  //         model={this.state.data}
-  //         onSubmit={(model) => { this.onSubmit(model) }}
-  //       />
-
-  //       <pre style={{ width: "300px" }}>
-  //         {JSON.stringify(this.state.patients)}
-  //       </pre>
-
-  //     </div>
-  //   );
-  // }
 }
 
 export default App;

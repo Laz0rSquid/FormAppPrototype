@@ -16,32 +16,60 @@ class Login extends Component {
         password: "Password",
         pseudonym: "Pseudonym",
       },
+      model : [
+        { key: "nurseID", label: "NurseID", propr: { required: true } },
+        { key: "password", label: "Password", propr: { required: true } },
+        { key: "pseudonym", label: "Pseudonym", propr: { required: true } },
+      ]
     }
   }
 
-  onChange = (e) => {
-
+  onChange = (e,key) => {
+    this.setState((state) => {
+      let newInputs = this.state.inputs ||{};
+      newInputs[key] = this[key].value;
+      return { inputs: {...newInputs}};
+    });
   }
 
   onSubmit = (e) => {
     e.preventDefault();
-    alert("Test");
+    alert("Move to form");
   }
 
-  renderInput = (key) => {
-
+  renderInput = (m, key) => {
+    let type = m.type || "text";
+    let props = m.props || {};
+    let name = m.name;
+    let value = m.value;
+    return (
+      <input
+        {...props}
+        ref={(key) => { this[m.key] = key }}
+        type={type}
+        key={"input" + m.key}
+        onChange={e => {
+          this.onChange(e, key);
+        }}
+      />
+    )
   }
 
   renderForm = () => {
-    let model = [
-      { key: "", label: "", propr: { required: true } },
-      { key: "", label: "", propr: { required: true } },
-      { key: "", label: "", propr: { required: true } },
-    ];
+    let model = this.state.model;
     let loginUI = model.map((m) => {
-      
+      let key = m.key;
+      return (
+        <div key={key} className="">
+          <label className="" key={"label" + m.key} htmlFor={m.key}>
+            {m.label}
+          </label>
+          {this.renderInput(m, key)}
+        </div>
+      );
+
     });
-    return formUI;
+    return loginUI;
   }
 
   render() {
