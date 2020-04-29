@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DynamicForm from './components/DynamicForm';
+import ConsentForm from './components/ConsentForm';
 import './App.css';
 
 class App extends Component {
@@ -64,7 +64,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <DynamicForm className="form"
+        <ConsentForm className="form"
           title="Consent"
           model={this.state.data}
           onSubmit={(model) => {this.onSubmit(model)}}
