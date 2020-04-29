@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ConsentForm from './components/ConsentForm';
+import Home from './components/Home';
+import Login from './components/Login';
 import './App.css';
 
 class App extends Component {
@@ -7,24 +9,24 @@ class App extends Component {
     data: [
       {
         key: "masterData",
-        title:"Stammdaten",
-        text:"Dürfen wir Ihre Stammdaten erfassen?",
+        title: "Stammdaten",
+        text: "Dürfen wir Ihre Stammdaten erfassen?",
         props: {
           default: false
         }
       },
       {
         key: "clinicalData",
-        title:"Klinische Daten",
-        text:"Dürfen wir Ihre klinischen Daten erfassen?",
+        title: "Klinische Daten",
+        text: "Dürfen wir Ihre klinischen Daten erfassen?",
         props: {
           default: false
         }
       },
       {
         key: "bioSamples",
-        title:"Bioproben",
-        text:"Dürfen wir Bioproben entnehmen?",
+        title: "Bioproben",
+        text: "Dürfen wir Bioproben entnehmen?",
         props: {
           default: false
         }
@@ -35,9 +37,9 @@ class App extends Component {
         id: "123",
         pseudonym: "Jane Doe",
         consents: [
-          {id: "masterData", status: "ACCEPTED"},
-          {id: "clinicalData", status: "ACCEPTED"},
-          {id: "bioSamples", status: "ACCEPTED"}
+          { id: "masterData", status: "ACCEPTED" },
+          { id: "clinicalData", status: "ACCEPTED" },
+          { id: "bioSamples", status: "ACCEPTED" }
         ]
       }
     ]
@@ -52,25 +54,29 @@ class App extends Component {
       patients: [newPatient, ...this.state.patients]
     });
   }
-  
+
   /**
-   * TODO:
-   * - DONE: Model needs to be taken from this.state.data (in preparation for loading it from files)
-   * - Model currently changes its identity in DynamicForm, maybe I can store the data from
-   *   the form in model.props to avoid confusion and data errors in the future
-   * - DONE: Test if form still works with expanded model, else form needs to be reworked to 
-   *   accomodate the changes
+   * Currently all screens are rendered below each other for testing purposes.
+   * Next step is a navigation stack that allows individual rendering
    */
   render() {
     return (
       <div className="App">
+        <Home className="form"
+          
+        />
+
+        <Login className="form"
+          
+        />
+
         <ConsentForm className="form"
           title="Consent"
           model={this.state.data}
-          onSubmit={(model) => {this.onSubmit(model)}}
+          onSubmit={(model) => { this.onSubmit(model) }}
         />
 
-        <pre style={{width:"300px"}}>
+        <pre style={{ width: "300px" }}>
           {JSON.stringify(this.state.patients)}
         </pre>
 
